@@ -1,8 +1,8 @@
+const { runtime } = require(process.env.DS_RUNTIME);
+
 function main() {
   // Inform datasole that application is ready.
-  process.send({
-    type: "ready"
-  });
+  runtime.signalReady();
 
   // Keep event loop alive.
   setInterval(() => {}, 100000);
