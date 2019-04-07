@@ -1,8 +1,8 @@
 {
   "name": "basic-app",
   "version": "0.1.0",
-  "dependencies": [],
-  "devDependencies": [],
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">=10.15.0"
   },
