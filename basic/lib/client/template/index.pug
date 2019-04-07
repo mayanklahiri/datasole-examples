@@ -1,0 +1,18 @@
+doctype
+html
+head
+  title Datasole App
+body
+  h1 Datasole Project
+
+  div(class="pull-right")
+    h3 Data Console
+    pre
+      code(id="data-console")
+      
+  h3 Config mode = #{MODE}
+  p The following constants were injected at compile-time by Webpack:    
+  pre
+    code= CONFIG    
+  h3 Image bundling    
+  img(src=require('Assets/sample.jpg'))
