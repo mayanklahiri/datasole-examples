@@ -29,4 +29,5 @@
         pre
           code Model status = 
           code {{this.$root.$data.modelStatus}}
+        img(src='~assets/sample.jpg')
 </template>
