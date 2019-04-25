@@ -9,6 +9,7 @@ import "bootstrap";
 import "./styles/global.scss";
 
 import routes from "./routes";
+import components from "./components";
 
 const PRODUCTION = CONFIG.mode === "production"; // CONFIG is injected by Webpack at build time
 
@@ -20,6 +21,20 @@ function main() {
   // Use vue-router
   Vue.use(VueRouter);
   const router = new VueRouter({ routes });
+
+  // Change document.title on route changes.
+  router.beforeEach((to, from, next) => {
+    if (to.meta.title) {
+      document.title = to.meta.title;
+    }
+    next();
+  });
+
+  // Register child components.
+  for (let instName in components) {
+    const inst = components[instName];
+    Vue.component(instName, inst);
+  }
 
   // Create app data model.
   const data = {

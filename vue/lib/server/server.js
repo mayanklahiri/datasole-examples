@@ -1,8 +1,10 @@
-const { mutations, runtime } = require(process.env.DS_RUNTIME);
+const { mutations, runtime, log } = require(process.env.DATASOLE_PATH);
 
 function main() {
   // Inform datasole that application is ready.
   runtime.signalReady();
+
+  log.info("Application started.");
 
   // Keep event loop alive.
   setInterval(() => {
