@@ -50,14 +50,9 @@ function main() {
 
   // Create shared data model and update Vue on updates.
   const liveModelClient = new LiveModelClient();
-
   liveModelClient.on("update", () => {
-    data.model = Object.assign({}, data.model, liveModelClient.getModel());
-    data.modelStatus = Object.assign(
-      {},
-      data.modelStatus,
-      liveModelClient.getModelStatus()
-    );
+    data.model = liveModelClient.getModel();
+    data.modelStatus = liveModelClient.getModelStatus();
   });
 
   // Initiate connection.

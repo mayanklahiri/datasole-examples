@@ -1,10 +1,16 @@
 const { mutations, runtime, log } = require(process.env.DATASOLE_PATH);
 
 function main() {
-  // Inform datasole that application is ready.
-  runtime.signalReady();
+  log.info("Application starting.");
 
-  log.info("Application started.");
+  runtime.sendMutations([
+    mutations.clearAll(),
+    mutations.setKeyPath("app_info", {
+      pid: process.pid,
+      cwd: process.cwd(),
+      argv: process.argv
+    })
+  ]);
 
   // Keep event loop alive.
   setInterval(() => {
@@ -15,6 +21,9 @@ function main() {
       })
     ]);
   }, 1000);
+
+  // Inform datasole that application is ready.
+  runtime.signalReady();
 }
 
 if (require.main === module) {
