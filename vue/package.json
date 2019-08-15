@@ -1,12 +1,14 @@
 {
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.5.5"
+  },
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6",
+    "vue-router": "^3.1.2",
     "vue-template-compiler": "^2.6.10"
   },
   "engines": {
