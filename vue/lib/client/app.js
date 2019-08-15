@@ -13,10 +13,16 @@ import components from "./components";
 
 const PRODUCTION = CONFIG.mode === "production"; // CONFIG is injected by Webpack at build time
 
+async function asyncFunc() {
+  console.log(`Async function support validated in browser.`);
+  return Promise.resolve();
+}
+
 function main() {
   if (!PRODUCTION) {
     console.warn("Running in development mode.");
   }
+  (async () => await asyncFunc())();
 
   // Use vue-router
   Vue.use(VueRouter);
