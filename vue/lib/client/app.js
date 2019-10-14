@@ -3,7 +3,7 @@
  */
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { LiveModelClient } from "live-model/client";
+import DatasoleClient from "datasole-client";
 
 import "bootstrap";
 import "./styles/global.scss";
@@ -13,16 +13,10 @@ import components from "./components";
 
 const PRODUCTION = CONFIG.mode === "production"; // CONFIG is injected by Webpack at build time
 
-async function asyncFunc() {
-  console.log(`Async function support validated in browser.`);
-  return Promise.resolve();
-}
-
 function main() {
   if (!PRODUCTION) {
     console.warn("Running in development mode.");
   }
-  (async () => await asyncFunc())();
 
   // Use vue-router
   Vue.use(VueRouter);
@@ -55,14 +49,15 @@ function main() {
   }).$mount("#app");
 
   // Create shared data model and update Vue on updates.
-  const liveModelClient = new LiveModelClient();
-  liveModelClient.on("update", () => {
-    data.model = liveModelClient.getModel();
-    data.modelStatus = liveModelClient.getModelStatus();
+  const client = new DatasoleClient();
+  client.on("update", () => {
+    data.model = client.getModel();
+    data.modelStatus = client.getModelStatus();
   });
+  client.on("error", console.error);
 
-  // Initiate connection.
-  liveModelClient.connect();
+  // Initiate Websocket connection loop to server.
+  client.connect();
 }
 
 // Enable Webpack HMR in development mode.
