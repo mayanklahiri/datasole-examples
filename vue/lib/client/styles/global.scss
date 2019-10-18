@@ -1,1 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
+
+$GRAY: #888;
+
+h2 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  color: $GRAY;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+}
