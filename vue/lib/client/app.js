@@ -51,8 +51,8 @@ function main() {
   // Create shared data model and update Vue on updates.
   const client = new DatasoleClient();
   client.on("update", () => {
-    data.model = client.getModel();
-    data.modelStatus = client.getModelStatus();
+    data.model = Object.assign({}, client.getModel());
+    data.modelStatus = Object.assign({}, client.getModelStatus());
   });
   client.on("error", console.error);
 
